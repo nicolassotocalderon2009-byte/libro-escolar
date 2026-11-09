@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuario Escolar Digital 2026</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+    <main class="escenario">
+
+        <div class="libro">
+
+            <div class="portada" id="portada">
+                <div class="marco-portada">
+                    <p contenteditable="true">PROMOCIÓN 2026</p>
+                    <div class="estrella">✦</div>
+                    <h1 contenteditable="true">
+                        NUESTRO<br>ANUARIO
+                    </h1>
+                    <div class="linea"></div>
+                    <h3 contenteditable="true">
+                        Una historia, mil recuerdos
+                    </h3>
+                    <p contenteditable="true">
+                        INSTITUCIÓN EDUCATIVA
+                    </p>
+                    <span contenteditable="true">
+                        CAMPOALEGRE - HUILA
+                    </span>
+                </div>
+            </div>
+
+            <!-- Las páginas de los estudiantes se generan dinámicamente desde Datos.js -->
+            <div id="paginas"></div>
+
+        </div>
+
+        <!-- Controles para pasar las páginas -->
+        <div class="controles">
+            <button id="anterior" aria-label="Página anterior">❮</button>
+            <span>
+                Página <b id="numero">1</b> de <span id="total-paginas">25</span>
+            </span>
+            <button id="siguiente" aria-label="Página siguiente">❯</button>
+        </div>
+
+        <!-- Botones de guardado e impresión -->
+        <div class="acciones">
+            <button id="guardar">💾 Guardar cambios locales</button>
+            <button id="imprimir">📄 Guardar como PDF</button>
+        </div>
+
+        <p id="mensaje"></p>
+
+    </main>
+
+    <!-- IMPORTANTE: Cargar Datos.js primero, luego script.js -->
+    <script src="Datos.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

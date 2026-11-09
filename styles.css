@@ -1,0 +1,463 @@
+/* =====================================
+   COLORES INSTITUCIONALES
+===================================== */
+
+:root {
+    --color-primario: #003366;
+    --color-secundario: #CC0000;
+    --color-fondo: #F4F4F4;
+    --color-texto: #333333;
+
+    --dorado: #c5a46d;
+    --papel: #fffdf7;
+}
+
+/* CONFIGURACIÓN GENERAL */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, #35495d, #111c28);
+    font-family: Georgia, serif;
+    overflow: hidden;
+}
+
+/* ESCENARIO DEL LIBRO */
+
+.escenario {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+}
+
+/* LIBRO VERTICAL */
+
+.libro {
+    position: relative;
+    width: min(430px, 82vw);
+    height: min(610px, 76vh);
+    min-height: 400px;
+    background: var(--papel);
+    border-radius: 5px 12px 12px 5px;
+    box-shadow:
+        12px 12px 25px rgba(0,0,0,.35),
+        4px 0 0 #d6cdbd,
+        7px 0 0 #eee7d9;
+    perspective: 1500px;
+}
+
+/* PORTADA */
+
+.portada {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    padding: 18px;
+    background: linear-gradient(145deg, var(--color-primario), #061b32);
+    color: white;
+    transition: transform .8s ease;
+    transform-origin: left center;
+    backface-visibility: hidden;
+}
+
+.marco-portada {
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--dorado);
+    outline: 1px solid rgba(255,255,255,.2);
+    outline-offset: -9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.marco-portada p {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #e6d3a9;
+}
+
+.estrella {
+    font-size: 55px;
+    color: var(--dorado);
+    margin: 35px 0;
+}
+
+.marco-portada h1 {
+    font-size: clamp(35px, 7vw, 48px);
+    font-weight: normal;
+    line-height: 1.1;
+}
+
+.linea {
+    width: 65%;
+    height: 2px;
+    background: var(--dorado);
+    margin: 30px 0;
+}
+
+.marco-portada h3 {
+    font-size: 17px;
+    font-weight: normal;
+    font-style: italic;
+    margin-bottom: 40px;
+}
+
+.marco-portada span {
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-top: 15px;
+}
+
+/* PÁGINAS */
+
+.pagina {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(130,100,50,.08), transparent 8%), var(--papel);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: rotateY(-12deg);
+    transform-origin: left center;
+    transition: transform .65s ease, opacity .4s ease, visibility .4s;
+    border: 1px solid #ded5c5;
+    box-shadow: inset 5px 0 10px rgba(0,0,0,.04);
+}
+
+.pagina.activa {
+    opacity: 1;
+    visibility: visible;
+    transform: rotateY(0);
+    z-index: 2;
+}
+
+/* ENCABEZADO */
+
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--dorado);
+    padding-bottom: 10px;
+    color: var(--color-primario);
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+/* CONTENIDO DEL ESTUDIANTE */
+
+.contenido {
+    display: grid;
+    grid-template-columns: 38% 1fr;
+    gap: 15px;
+    flex: 1;
+    min-height: 0;
+    padding-top: 20px;
+}
+
+/* FOTOGRAFÍA VERTICAL */
+
+.columna-foto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.foto {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: #e8e0d3;
+    border: 5px solid white;
+    outline: 1px solid var(--dorado);
+    box-shadow: 0 5px 12px rgba(0,0,0,.12);
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.foto span {
+    text-align: center;
+    font-size: 11px;
+    color: #777;
+    padding: 5px;
+}
+
+.foto-input {
+    display: none;
+}
+
+.texto-foto {
+    text-align: center;
+    font-size: 10px;
+    color: #777;
+    margin-top: 12px;
+    font-style: italic;
+}
+
+/* INFORMACIÓN */
+
+.informacion {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.etiqueta {
+    color: var(--color-secundario);
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.nombre {
+    color: var(--color-primario);
+    font-size: clamp(17px, 3.5vw, 24px);
+    font-weight: normal;
+    margin: 5px 0;
+    overflow-wrap: anywhere;
+}
+
+.decoracion {
+    width: 40px;
+    height: 2px;
+    background: var(--dorado);
+    margin: 5px 0 12px;
+}
+
+/* CAMPOS EDITABLES */
+
+.campo {
+    margin-bottom: 12px;
+}
+
+.campo h3 {
+    font-size: 11px;
+    color: var(--color-primario);
+    margin-bottom: 4px;
+}
+
+.campo p {
+    font-size: 9px;
+    line-height: 1.4;
+    color: var(--color-texto);
+    overflow-wrap: anywhere;
+    white-space: pre-line;
+}
+
+/* FIRMA */
+
+.firma {
+    margin-top: auto;
+    padding-top: 8px;
+}
+
+.firma p {
+    font-size: 10px;
+    color: #777;
+}
+
+.firma .nombre-firma {
+    color: var(--color-secundario);
+    font-size: 18px;
+    font-family: cursive;
+    font-style: italic;
+    min-height: 25px;
+}
+
+.linea-firma {
+    width: 85%;
+    border-bottom: 1px solid #aaa;
+}
+
+/* PIE DE PÁGINA */
+
+.pie {
+    border-top: 1px solid #d7c6a5;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    color: #888;
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+/* ELEMENTOS EDITABLES */
+
+[contenteditable="true"] {
+    outline: none;
+    cursor: text;
+}
+
+[contenteditable="true"]:focus {
+    background: rgba(197,164,109,.13);
+    outline: 1px dashed var(--dorado);
+}
+
+/* NAVEGACIÓN */
+
+.controles {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+.controles button {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.controles button:hover {
+    background: var(--color-primario);
+}
+
+.controles button:disabled {
+    opacity: .3;
+    cursor: default;
+}
+
+/* BOTONES */
+
+.acciones {
+    display: flex;
+    gap: 10px;
+}
+
+.acciones button {
+    padding: 9px 15px;
+    border: 1px solid rgba(255,255,255,.4);
+    border-radius: 20px;
+    color: white;
+    background: rgba(255,255,255,.1);
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.acciones button:hover {
+    background: var(--color-primario);
+}
+
+#mensaje {
+    color: #e8d5aa;
+    font: 10px Arial, sans-serif;
+    min-height: 12px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 480px) {
+    .libro {
+        width: 85vw;
+        height: 70vh;
+    }
+
+    .pagina {
+        padding: 14px;
+    }
+
+    .contenido {
+        gap: 9px;
+        padding-top: 13px;
+    }
+
+    .campo {
+        margin-bottom: 7px;
+    }
+
+    .campo p {
+        font-size: 8px;
+    }
+
+    .campo h3 {
+        font-size: 9px;
+    }
+}
+
+/* IMPRESIÓN */
+
+@media print {
+    @page {
+        size: A5 portrait;
+        margin: 0;
+    }
+
+    body {
+        display: block;
+        background: white;
+        overflow: visible;
+    }
+
+    .escenario {
+        display: block;
+        padding: 0;
+    }
+
+    .libro {
+        width: 148mm;
+        height: auto;
+        box-shadow: none;
+    }
+
+    .portada,
+    .pagina,
+    .pagina.activa,
+    .pagina:not(.activa) {
+        position: relative;
+        display: flex;
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+        width: 148mm;
+        height: 210mm;
+        box-shadow: none;
+        break-after: page;
+        page-break-after: always;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .controles,
+    .acciones,
+    #mensaje {
+        display: none !important;
+    }
+}
+
+
+
+
+
+
